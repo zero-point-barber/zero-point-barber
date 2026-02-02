@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.8.4.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;el&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;ZERO POINT Barber&lt;/title&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+
+&lt;style&gt;
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),
+    url(&quot;https://images.unsplash.com/photo-1585747860715-2ba37e788b70&quot;);
+  background-size:cover;
+  background-position:center;
+  color:#fff;
+  text-align:center;
+}
+header{padding:25px 15px;}
+.logo{font-size:2.2em;font-weight:800;letter-spacing:3px;}
+.desc{max-width:420px;margin:10px auto;font-size:.95em;color:#eaeaea;}
+
+.card{
+  background:rgba(0,0,0,.85);
+  max-width:420px;
+  margin:20px auto;
+  padding:25px;
+  border-radius:12px;
+}
+
+.price-list{text-align:left;font-size:.95em;margin-bottom:15px;}
+.price-list p{margin:6px 0;}
+
+input,select{
+  width:100%;
+  padding:10px;
+  margin:7px 0;
+  border-radius:6px;
+  border:none;
+  font-size:.9em;
+}
+
+.times{margin-top:10px;}
+.times button{
+  margin:4px;
+  padding:8px 12px;
+  border-radius:16px;
+  border:none;
+  font-size:.85em;
+  cursor:pointer;
+  background:#fff;
+  color:#000;
+}
+.times button.active{background:#00ff99;}
+.times button.booked{background:#555;color:#aaa;cursor:not-allowed;}
+
+.submit{
+  margin-top:12px;
+  padding:12px;
+  width:100%;
+  font-size:1em;
+  font-weight:bold;
+  background:#fff;
+  color:#000;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+footer{margin:20px 0;font-size:.8em;color:#ccc;}
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;logo&quot;&gt;ZERO POINT&lt;/div&gt;
+  &lt;div class=&quot;desc&quot;&gt;
+    Home barber shop για καθαρό κούρεμα και σωστό στυλ. Μόνο με ραντεβού.
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class=&quot;card&quot;&gt;
+
+  &lt;div class=&quot;price-list&quot;&gt;
+    &lt;p&gt;Κούρεμα — &lt;strong&gt;5€&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;Κούρεμα &amp; Γένι — &lt;strong&gt;7€&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;Μόνο Γένι — &lt;strong&gt;4€&lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;form
+    action=&quot;https://formsubmit.co/vagianakis2006@gmail.com&quot;
+    method=&quot;POST&quot;
+    onsubmit=&quot;return sendWhatsApp()&quot;&gt;
+
+    &lt;input type=&quot;hidden&quot; name=&quot;_subject&quot; value=&quot;Νέο Ραντεβού - ZERO POINT&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_captcha&quot; value=&quot;false&quot;&gt;
+    &lt;input type=&quot;hidden&quot; id=&quot;selectedTime&quot; name=&quot;Ώρα&quot;&gt;
+    &lt;input type=&quot;hidden&quot; id=&quot;servicePrice&quot; name=&quot;Τιμή&quot;&gt;
+
+    &lt;input id=&quot;name&quot; name=&quot;Όνομα&quot; placeholder=&quot;Ονοματεπώνυμο&quot; required&gt;
+    &lt;input id=&quot;phone&quot; name=&quot;Τηλέφωνο&quot; placeholder=&quot;Τηλέφωνο&quot; required&gt;
+
+    &lt;select id=&quot;service&quot; name=&quot;Υπηρεσία&quot; required onchange=&quot;updatePrice()&quot;&gt;
+      &lt;option value=&quot;&quot;&gt;Επιλογή Υπηρεσίας&lt;/option&gt;
+      &lt;option value=&quot;Κούρεμα&quot;&gt;Κούρεμα – 5€&lt;/option&gt;
+      &lt;option value=&quot;Κούρεμα &amp; Γένι&quot;&gt;Κούρεμα &amp; Γένι – 7€&lt;/option&gt;
+      &lt;option value=&quot;Μόνο Γένι&quot;&gt;Μόνο Γένι – 4€&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;input type=&quot;date&quot; id=&quot;date&quot; name=&quot;Ημερομηνία&quot; required onchange=&quot;loadTimes()&quot;&gt;
+
+    &lt;div class=&quot;times&quot; id=&quot;times&quot;&gt;&lt;/div&gt;
+
+    &lt;button class=&quot;submit&quot; type=&quot;submit&quot;&gt;Κλείσε Ραντεβού&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;p style=&quot;margin-top:10px;font-size:.9em;&quot;&gt;Τηλ. 698 405 8978&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+© ZERO POINT Barber
+&lt;/footer&gt;
+
+&lt;script&gt;
+const hours = [
+  &quot;10:00&quot;,&quot;10:30&quot;,&quot;11:00&quot;,&quot;11:30&quot;,
+  &quot;12:00&quot;,&quot;12:30&quot;,&quot;13:00&quot;,
+  &quot;17:00&quot;,&quot;17:30&quot;,&quot;18:00&quot;,&quot;18:30&quot;,
+  &quot;19:00&quot;,&quot;19:30&quot;
+];
+
+function loadTimes(){
+  const dateVal = document.getElementById(&quot;date&quot;).value;
+  const container = document.getElementById(&quot;times&quot;);
+  const selected = document.getElementById(&quot;selectedTime&quot;);
+
+  if(!dateVal) return;
+
+  container.innerHTML = &quot;&quot;;
+  selected.value = &quot;&quot;;
+
+  const booked = JSON.parse(localStorage.getItem(dateVal)) || [];
+
+  hours.forEach(time=&gt;{
+    const btn = document.createElement(&quot;button&quot;);
+    btn.type=&quot;button&quot;;
+    btn.textContent=time;
+
+    if(booked.includes(time)){
+      btn.className=&quot;booked&quot;;
+    }else{
+      btn.onclick=()=&gt;selectTime(dateVal,time,btn);
+    }
+    container.appendChild(btn);
+  });
+}
+
+function selectTime(date,time,btn){
+  document.querySelectorAll(&quot;#times button&quot;).forEach(b=&gt;b.classList.remove(&quot;active&quot;));
+  btn.classList.add(&quot;active&quot;);
+  document.getElementById(&quot;selectedTime&quot;).value=time;
+
+  const booked = JSON.parse(localStorage.getItem(date)) || [];
+  if(!booked.includes(time)){
+    booked.push(time);
+    localStorage.setItem(date,JSON.stringify(booked));
+  }
+}
+
+function updatePrice(){
+  const s = document.getElementById(&quot;service&quot;).value;
+  if(s===&quot;Κούρεμα&quot;) servicePrice.value=&quot;5€&quot;;
+  if(s===&quot;Κούρεμα &amp; Γένι&quot;) servicePrice.value=&quot;7€&quot;;
+  if(s===&quot;Μόνο Γένι&quot;) servicePrice.value=&quot;4€&quot;;
+}
+
+function sendWhatsApp(){
+  const nameVal = document.getElementById(&quot;name&quot;).value;
+  const phoneVal = document.getElementById(&quot;phone&quot;).value;
+  const serviceVal = document.getElementById(&quot;service&quot;).value;
+  const priceVal = document.getElementById(&quot;servicePrice&quot;).value;
+  const dateVal = document.getElementById(&quot;date&quot;).value;
+  const timeVal = document.getElementById(&quot;selectedTime&quot;).value;
+
+  if(!timeVal){
+    alert(&quot;Παρακαλώ επίλεξε ώρα.&quot;);
+    return false;
+  }
+
+  const msg =
+`ΝΕΟ ΡΑΝΤΕΒΟΥ - ZERO POINT
+Όνομα: ${nameVal}
+Τηλέφωνο: ${phoneVal}
+Υπηρεσία: ${serviceVal}
+Τιμή: ${priceVal}
+Ημερομηνία: ${dateVal}
+Ώρα: ${timeVal}`;
+
+  window.open(
+    &quot;https://wa.me/306984058978?text=&quot; + encodeURIComponent(msg),
+    &quot;_blank&quot;
+  );
+
+  return true;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
